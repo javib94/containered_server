@@ -1,0 +1,38 @@
+version: '3.3'services:
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'db'
+      # So you don't have to use root, but you can if you like
+      MYSQL_USER: 'user'
+      # You can use whatever password you like
+      MYSQL_PASSWORD: 'password'
+      # Password for root access
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      # <Port exposed> : < MySQL Port running inside container>
+      - '3306:3306'
+    expose:
+      # Opens port 3306 on the container
+      - '3306'
+      # Where our data will be persisted
+    volumes:
+      - my-db:/var/lib/mysql
+# Names our volume
+volumes:
+  my-db:
+re you made your docker-compose.yml and from there, run docker-compose up(this might take a while on the first run because Docker needs to pull the containers). We should now have a MySQL instance running on localhost:3306.
+
+Your output should look similar to this:
+
+And that’s it! If you want to change databases from MySQL to something else, all you have to do is change the docker-compose.yml and restart Docker Compose.
+
+Here’s a simple Postgres DB example:
+
+version: '3.3'services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password
