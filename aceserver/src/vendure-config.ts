@@ -50,7 +50,8 @@ export const config: VendureConfig = {
     customFields: {},
     plugins: [
         AssetServerPlugin.init({
-            route: 'assets',
+            route: 'serverassets',
+            assetUrlPrefix: "https://www.aceelectronicos.com/serverassets/",
             assetUploadDir: path.join(__dirname, '../static/assets'),
         }),
         DefaultJobQueuePlugin,
